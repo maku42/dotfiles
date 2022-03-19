@@ -15,23 +15,29 @@ set undofile
 set incsearch
 set colorcolumn=80
 set backspace=indent,eol,start
+set rtp+=/usr/local/opt/fzf
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
-
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug '/usr/local/opt/fzf'
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mbbill/undotree'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
-
+Plug 'mgedmin/python-imports.vim'
 call plug#end()
+
 
 colorscheme gruvbox
 set background=dark
 
-    
+
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let mapleader = " "
 let g:netrw_browse_split=2
@@ -43,11 +49,11 @@ nnoremap <leader>h :wincmd h<CR>
 noremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 
 
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
-
